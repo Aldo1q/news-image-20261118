@@ -42,6 +42,11 @@ def validate_png(path):
         raise ValueError(
             f"entry.png is bit depth {bit_depth}, color type {color_type}; "
             "expected 8-bit RGB(A)")
+    with open(path, "rb") as f:
+        f.seek(-12, os.SEEK_END)
+        tail = f.read()
+    if tail[4:8] != b"IEND":
+        raise ValueError("entry.png is truncated (no IEND chunk)")
     return width, height
 
 
