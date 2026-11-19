@@ -21,8 +21,8 @@ EXPECT_W, EXPECT_H = 1024, 1024
 
 def validate_png(path):
     """Check the image meets the bounty's limits before it is copied out:
-    a real PNG, at most 1 MiB, and exactly the 1024x1024 front-page size
-    this entry is designed at. Raises on a bad file."""
+    a real PNG, at most 1 MiB, exactly the 1024x1024 front-page size this
+    entry is designed at, and 8-bit RGB(A) pixels. Raises on a bad file."""
     with open(path, "rb") as f:
         head = f.read(33)
     if head[:8] != b"\x89PNG\r\n\x1a\n":
@@ -35,6 +35,11 @@ def validate_png(path):
     if (width, height) != (EXPECT_W, EXPECT_H):
         raise ValueError(
             f"entry.png is {width}x{height}, expected {EXPECT_W}x{EXPECT_H}")
+    bit_depth, color_type = head[24], head[25]
+    if bit_depth != 8 or color_type not in (2, 6):
+        raise ValueError(
+            f"entry.png is bit depth {bit_depth}, color type {color_type}; "
+            "expected 8-bit RGB(A)")
     return width, height
 
 
