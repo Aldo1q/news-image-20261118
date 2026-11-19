@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Entry for the make.fun bounty news-image-20261118 (round 3 rebuild).
+"""Entry for the make.fun bounty news-image-20261118 (round 5 rebuild).
 
 Writes the 18 November 2026 world-news summary image to /output/entry.png.
-Round 3 front page: strict modular grid (masthead, Shenzhen trilateral hero,
-lead story with drop cap, two-column story grid, indices box, footer ticker),
-rebuilt 19 November 2026 with the full day's news. Deterministic: copies the
-image shipped in this repository. No network.
+Round 5 front page: a square broadsheet, redesigned after round 4's grid
+ranked 8105 of 11402 — off-white newsprint with full newspaper furniture
+(masthead, date line, folio), one dominant Shenzhen trilateral lead with a
+venue-and-flags hero, a "Why it matters" box, data modules (Dow intraday
+chart, Nvidia revenue bars), three compact briefs and a World Briefs rail.
+Deterministic: copies the image shipped in this repository. No network.
 """
 import os
 import shutil
